@@ -21,7 +21,7 @@ const Login = async ({}) => {
                 <label htmlFor="password">Senha: </label>
                 <input {...register('password')} type="password" name="password" id="password" placeholder="password"></input>
 
-                <input type="submit" value="Acessar" />
+                <input className="mt-3 bg-gray-600 text-white p-2 rounded-lg " type="submit" value="Acessar" />
             </form>
             {authError && <p>{authError}</p>}
         </div>

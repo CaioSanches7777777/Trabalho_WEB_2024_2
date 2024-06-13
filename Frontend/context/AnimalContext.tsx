@@ -9,13 +9,13 @@ import { request } from "@/services/request";
 export type Animal = {
     _id: string,
     name: string,
-    specie: string,
+    species: string,
     age: number
 }
 
 type AnimalContextType = {
     Animals: Animal[];
-    addAnimal: (_id:string, name:string, specie:string,age:number) => void;
+    addAnimal: (_id:string, name:string, species:string,age:number) => void;
     removeAnimal: (_id:string) => void;
     //changeCategory: (_id:string, new_Category:string) => void;
 }
@@ -29,7 +29,7 @@ export const AnimalContext = createContext({} as AnimalContextType);
 export const AnimalContextProvider = ({ children } : {children: React.ReactNode;}) => {
     const [Animals, setAnimals] = useState<Animal[]>([]);
 
-    const addAnimal = (_id:string,name:string,specie:string,age:number)=>{
+    const addAnimal = (_id:string,name:string,species:string,age:number)=>{
         let token = document.cookie;
         request<UserAuthentication>('http://localhost:5000/animals',{
             method: 'POST',
@@ -37,7 +37,7 @@ export const AnimalContextProvider = ({ children } : {children: React.ReactNode;
                 'Content-Type': 'application/json',
                 'x-access-token': token
             },
-            body: JSON.stringify({_id,name,specie,age}),
+            body: JSON.stringify({_id,name,species,age}),
             referrerPolicy: 'no-referrer',
             cache: 'no-store'
         })

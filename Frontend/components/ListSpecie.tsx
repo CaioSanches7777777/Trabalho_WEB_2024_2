@@ -41,14 +41,14 @@ const ListSpecie = ({}) => {
     : specieList.filter(specie => specie.diet === selectedDiet);
   return (
     <main className="flex flex-col items-center p-4 bg-gray-100 min-h-screen">
-      <div id="filters" className="mb-4">
-        <p className="text-center">Filtrar busca de Espécie com base em Dieta</p>
-        <button onClick={() => filterSpecies('all')} className="bg-blue-500 text-white py-2 px-4 m-2 rounded hover:bg-blue-700">Todos</button>
+      <p className="text-center">Filtrar busca de Espécie com base em Dieta</p>
+      <div id="filters" className="mb-4 flex items-center">
+        <button onClick={() => filterSpecies('all')} className="bg-gray-600 text-white py-2 px-4 m-2 rounded-lg hover:bg-gray-800">Todos</button>
         {dietList.map((diet:Diet) => (
           <button 
             key={diet._id} 
             onClick={() => filterSpecies(diet.type)} 
-            className="bg-blue-500 text-white py-2 px-4 m-2 rounded hover:bg-blue-700">
+            className="bg-gray-600 text-white py-2 px-4 m-2 rounded-lg hover:bg-gray-800">
             {diet.type}
           </button>
         ))}
