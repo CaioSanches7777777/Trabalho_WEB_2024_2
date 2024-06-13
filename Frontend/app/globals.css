@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.active-tab{
+    color: rgb(44, 165, 165);
+}
+
+.tabcontent {
+    float: right;
+    padding: 0px 12px;
+    border: 1px solid #ccc;
+    /*width: 30%;*/
+    border-left: none;
+    height: 300px;
+    /*justify-self: flex-end;
+    margin-right: 10%;*/
+    margin-bottom: 40px;
+    overflow-wrap: break-word;
+    overflow-y: scroll;
+    position: sticky;
+    max-width: 30%;
+  }
