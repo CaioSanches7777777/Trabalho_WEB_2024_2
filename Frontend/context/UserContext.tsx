@@ -6,12 +6,13 @@ import { setCookie } from "@/node_modules/nookies/dist/index";
 import { useRouter } from "@/node_modules/next/navigation";
 
 export type SignIdData = {
+    _id: string;
     username: string;
     password: string;
 }
 
-export type RegisterContextType = {
-    createUser: (data: SignIdData) => void;
+export type LocateContextType = {
+    getUser: (data: SignIdData) => void;
     authError: string | null;
 }
 
@@ -19,15 +20,15 @@ type UserAuthentication = {
     'x-access-token' : string
 }
 
-export const RegisterContext = createContext({} as RegisterContextType);
+export const LocateContext = createContext({} as LocateContextType);
 
-export default function RegisterProvider( {children}: {children: React.ReactNode}){
+export default function LocateProvider( {children}: {children: React.ReactNode}){
 
     const [authError, setAuthError] = useState<string | null>(null)
 
     const router = useRouter();
     
-    async function createUser({username, password}: SignIdData) {
+    async function getUser({username, password}: SignIdData) {
 
         let {'x-access-token': token} = await request<UserAuthentication>('http://localhost:5000/auth',{
             method: 'POST',
@@ -54,20 +55,19 @@ export default function RegisterProvider( {children}: {children: React.ReactNode
                 maxAge: 60 * 60 * 1,
             });
             request<UserAuthentication>('http://localhost:5000/registerUser',{
-                method: 'POST',
+                method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     'x-access-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkM0MTAiLCJpYXQiOjE3MTgzNzI2MjN9.p-cY7-BtKxyJqnU8dv_eebCc9p9wu4JWcMPVfkpT2FI"
                 },
-                body: JSON.stringify({username,password}),
                 referrerPolicy: 'no-referrer',
                 cache: 'no-store'
             })
         }
     }
     return (
-        <RegisterContext.Provider value={{createUser, authError}}>
+        <LocateContext.Provider value={{getUser, authError}}>
             {children}
-        </RegisterContext.Provider>
+        </LocateContext.Provider>
     );
 };

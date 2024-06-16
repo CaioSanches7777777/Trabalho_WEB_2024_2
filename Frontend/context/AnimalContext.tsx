@@ -7,7 +7,6 @@ import { request } from "@/services/request";
 
 
 export type Animal = {
-    _id: string,
     name: string,
     species: string,
     age: number
@@ -15,7 +14,7 @@ export type Animal = {
 
 type AnimalContextType = {
     Animals: Animal[];
-    addAnimal: (_id:string, name:string, species:string,age:number) => void;
+    addAnimal: (name:string, species:string,age:number) => void;
     removeAnimal: (_id:string) => void;
     //changeCategory: (_id:string, new_Category:string) => void;
 }
@@ -29,15 +28,15 @@ export const AnimalContext = createContext({} as AnimalContextType);
 export const AnimalContextProvider = ({ children } : {children: React.ReactNode;}) => {
     const [Animals, setAnimals] = useState<Animal[]>([]);
 
-    const addAnimal = (_id:string,name:string,species:string,age:number)=>{
+    const addAnimal = (name:string,species:string,age:number)=>{
         let token = document.cookie;
         request<UserAuthentication>('http://localhost:5000/animals',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'x-access-token': token
+                'x-access-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkM0MTAiLCJpYXQiOjE3MTgzNzI2MjN9.p-cY7-BtKxyJqnU8dv_eebCc9p9wu4JWcMPVfkpT2FI"
             },
-            body: JSON.stringify({_id,name,species,age}),
+            body: JSON.stringify({name,species,age}),
             referrerPolicy: 'no-referrer',
             cache: 'no-store'
         })

@@ -31,7 +31,7 @@ const ListAnimal = ({}) => {
   }, []);
   
   if (!animalList.length) return <p className="text-center">Não há animais visíveis para seu usuário</p>;
-  if (!specieList.length) return <p className="text-center">Não há spécies de animais visíveis para seu usuário</p>;
+  if (!specieList.length) return <p className="text-center">Não há espécies de animais visíveis para seu usuário</p>;
   const filterAnimals = (specie: string) => {
     setSelectedSpecie(specie);
   };

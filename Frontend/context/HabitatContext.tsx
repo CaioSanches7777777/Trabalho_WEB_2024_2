@@ -7,7 +7,6 @@ import { useRouter } from "@/node_modules/next/navigation";
 import { cookies } from "next/headers";
 
 export type Habitat = {
-    _id:string;
     name:string;
     temperature:number
 }
@@ -16,7 +15,7 @@ type UserAuthentication = {
 }
 type HabitatType = {
     Habitats: Habitat[]
-    addHabitat: (_id:string,name:string,temperature:number)=>void;
+    addHabitat: (name:string,temperature:number)=>void;
 }
 
 
@@ -25,9 +24,8 @@ export const HabitatContext = createContext({} as HabitatType);
 export const HabitatContextProvider = ( {children}: {children: React.ReactNode;}) => {
     const [Habitats, setHabitats] = useState<Habitat[]>([])
 
-    const addHabitat = (_id:string,name:string,temperature:number)=>{
+    const addHabitat = (name:string,temperature:number)=>{
         let newHabitat = {
-            _id:__dirname,
             name:name,
             temperature:temperature
         }
@@ -36,9 +34,9 @@ export const HabitatContextProvider = ( {children}: {children: React.ReactNode;}
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'x-access-token': document.cookie
+                'x-access-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkM0MTAiLCJpYXQiOjE3MTgzNzI2MjN9.p-cY7-BtKxyJqnU8dv_eebCc9p9wu4JWcMPVfkpT2FI"
             },
-            body: JSON.stringify({_id,name,temperature}),
+            body: JSON.stringify({name,temperature}),
             referrerPolicy: 'no-referrer',
             cache: 'no-store'
         })

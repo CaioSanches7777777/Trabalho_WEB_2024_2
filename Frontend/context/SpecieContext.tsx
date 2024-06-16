@@ -7,7 +7,6 @@ import { useRouter } from "@/node_modules/next/navigation";
 import { cookies } from "next/headers";
 
 export type Specie = {
-    _id:string;
     name: string;
     qtd: number,
     habitat: string,
@@ -19,7 +18,7 @@ type UserAuthentication = {
 }
 type SpecieType = {
     Species: Specie[]
-    addSpecie: (_id:string,name:string,qtd:number,habitat:string,diet:string,img_url:string)=>void;
+    addSpecie: (name:string,qtd:number,habitat:string,diet:string,img_url:string)=>void;
 }
 
 
@@ -28,9 +27,8 @@ export const SpecieContext = createContext({} as SpecieType);
 export const SpecieContextProvider = ( {children}: {children: React.ReactNode;}) => {
     const [Species, setSpecies] = useState<Specie[]>([])
 
-    const addSpecie = (_id:string,name:string,qtd:number,habitat:string,diet:string,img_url:string)=>{
+    const addSpecie = (name:string,qtd:number,habitat:string,diet:string,img_url:string)=>{
         let newSpecie = {
-            _id:__dirname,
             name:name,
             qtd:qtd,
             habitat:habitat,
@@ -42,9 +40,9 @@ export const SpecieContextProvider = ( {children}: {children: React.ReactNode;})
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'x-access-token': document.cookie
+                'x-access-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkM0MTAiLCJpYXQiOjE3MTgzNzI2MjN9.p-cY7-BtKxyJqnU8dv_eebCc9p9wu4JWcMPVfkpT2FI"
             },
-            body: JSON.stringify({_id,name,qtd,habitat,diet,img_url}),
+            body: JSON.stringify({name,qtd,habitat,diet,img_url}),
             referrerPolicy: 'no-referrer',
             cache: 'no-store'
         })
