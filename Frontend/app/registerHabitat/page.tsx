@@ -26,7 +26,7 @@ const NewHabitat = async ({}) => {
                 <label htmlFor="temperature">Temperatura: </label>
                 <input {...register('temperature')} type="text" name="temperature" id="temperature" placeholder="temperature"></input>
 
-                <input type="submit" value="Registrar habitate" />
+                <input type="submit" className="mt-3 bg-gray-600 text-white p-2 rounded-lg " value="Registrar habitate" />
             </form>
         </div>
     );

@@ -29,7 +29,7 @@ const NewAnimal = async ({}) => {
                 <label htmlFor="age">Idade: </label>
                 <input {...register('age')} type="text" name="age" id="age" placeholder="age"></input>
 
-                <input type="submit" value="Registrar animal" />
+                <input type="submit" className="mt-3 bg-gray-600 text-white p-2 rounded-lg " value="Registrar animal" />
             </form>
         </div>
     );

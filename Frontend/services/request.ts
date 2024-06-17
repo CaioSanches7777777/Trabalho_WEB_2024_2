@@ -4,7 +4,7 @@ export function request<TResponse>(
     config: RequestInit = {}
 ):Promise<TResponse> {
     return fetch(url, config) 
-        .then((response) => {try{response.json()}catch(e){}})
+        .then((response) => response.json())
         .then((response) => response as TResponse);
 }
 

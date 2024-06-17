@@ -1,12 +1,12 @@
 'use client';
 
 import React, {useContext, useEffect, useState} from 'react';
-import { SpecieContext, Specie } from "@/context/SpecieContext";
+import { SpecieContext, SpecieData } from "@/context/SpecieContext";
 import Select from 'react-dropdown-select';
 import { DietData } from '@/context/DietContext';
 
 const ListSpecie = ({}) => {
-  const [specieList, setSpecieList] = useState<Specie[]>([]);
+  const [specieList, setSpecieList] = useState<SpecieData[]>([]);
   const [dietList, setDietList] = useState<DietData[]>([]);
   //const [isLoading, setLoading] = useState(true);
   const [selectedDiet, setSelectedDiet] = useState<string>('all');
@@ -44,7 +44,7 @@ const ListSpecie = ({}) => {
       <p className="text-center">Filtrar busca de Espécie com base em Dieta</p>
       <div id="filters" className="mb-4 flex items-center">
         <button onClick={() => filterSpecies('all')} className="bg-gray-600 text-white py-2 px-4 m-2 rounded-lg hover:bg-gray-800">Todos</button>
-        {dietList.map((diet:Diet) => (
+        {dietList.map((diet:DietData) => (
           <button 
             key={diet._id} 
             onClick={() => filterSpecies(diet.type)} 

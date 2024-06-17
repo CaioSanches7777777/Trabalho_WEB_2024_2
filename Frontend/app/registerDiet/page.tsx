@@ -23,7 +23,7 @@ const NewDiet = async ({}) => {
                 <label htmlFor="type">Tipo: </label>
                 <input {...register('type')} type="text" name="type" id="type" placeholder="type"></input>
 
-                <input type="submit" value="Registrar dieta" />
+                <input type="submit" className="mt-3 bg-gray-600 text-white p-2 rounded-lg " value="Registrar dieta" />
             </form>
         </div>
     );
