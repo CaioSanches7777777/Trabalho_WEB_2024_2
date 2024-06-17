@@ -6,7 +6,6 @@ import Select from 'react-dropdown-select';
 
 const ListUser = ({}) => {
     const [userList, setUserList] = useState<SignIdData[]>([])
-  //const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch('http://localhost:5000/registerUser',{
@@ -32,9 +31,10 @@ const ListUser = ({}) => {
       
       <div className="flex flex-col items-center gap-4 w-full">
       <p className="text-center">Tipos de usuários</p>
-        {userList.map(({ _id, username}) => (
+        {userList.map(({ _id, username,position}) => (
           <div key={_id} className="bg-white border border-gray-300 rounded p-4 shadow-md">
             <p className="text-xl font-semibold mb-2">{username}</p>
+            <p className="text-gray-600">Posição: {position}</p>
           </div>
         ))}
       </div>

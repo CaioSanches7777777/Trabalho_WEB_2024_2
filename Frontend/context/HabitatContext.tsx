@@ -6,7 +6,8 @@ import { setCookie } from "@/node_modules/nookies/dist/index";
 import { useRouter } from "@/node_modules/next/navigation";
 import { cookies } from "next/headers";
 
-export type Habitat = {
+export type HabitatData = {
+    _id:string,
     name:string;
     temperature:number
 }
@@ -14,22 +15,18 @@ type UserAuthentication = {
     'x-access-token' : string
 }
 type HabitatType = {
-    Habitats: Habitat[]
-    addHabitat: (name:string,temperature:number)=>void;
+    Habitats: HabitatData[]
+    addHabitat: (newHabitat:HabitatData)=>void;
 }
 
 
 export const HabitatContext = createContext({} as HabitatType);
 
 export const HabitatContextProvider = ( {children}: {children: React.ReactNode;}) => {
-    const [Habitats, setHabitats] = useState<Habitat[]>([])
+    const [Habitats, setHabitats] = useState<HabitatData[]>([])
 
-    const addHabitat = (name:string,temperature:number)=>{
-        let newHabitat = {
-            name:name,
-            temperature:temperature
-        }
-        setHabitats([...Habitats,newHabitat]);
+    const addHabitat = ({name,temperature}:HabitatData)=>{
+        
         request<UserAuthentication>('http://localhost:5000/habitats',{
             method: 'POST',
             headers: {

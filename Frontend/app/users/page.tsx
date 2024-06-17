@@ -21,10 +21,13 @@ const Users = async ({}) => {
       
             <form className="flex flex-col" onSubmit={handleSubmit(handleLogin)}>
                 <label htmlFor="username">Usuário: </label>
-                <input {...register('username')} type="username" name="username2" id="username2" placeholder="username"></input>
+                <input {...register('username')} type="username" name="username" id="username" placeholder="username"></input>
 
                 <label htmlFor="password">Senha: </label>
-                <input {...register('password')} type="text" name="password2" id="password2" placeholder="password"></input>
+                <input {...register('password')} type="text" name="password" id="password" placeholder="password"></input>
+
+                <label htmlFor="position">Posição: </label>
+                <input {...register('position')} type="text" name="position" id="position" placeholder="position"></input>
 
                 <input type="submit" value="Criar usuário" />
             </form>

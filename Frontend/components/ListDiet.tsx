@@ -1,13 +1,11 @@
 'use client';
 
 import React, {useContext, useEffect, useState} from 'react';
-import { DietContext, Diet } from "@/context/DietContext";
+import { DietContext, DietData } from "@/context/DietContext";
 import Select from 'react-dropdown-select';
-import { Habitat } from '@/context/HabitatContext';
 
 const ListDiet = ({}) => {
-  const [dietList, setDietList] = useState<Diet[]>([]);
-  const [habitatList, setHabitatList] = useState<Habitat[]>([]);
+  const [dietList, setDietList] = useState<DietData[]>([]);
   //const [isLoading, setLoading] = useState(true);
   const [selectedHabitat, setSelectedHabitat] = useState<string>('all');
 

@@ -6,28 +6,26 @@ import { setCookie } from "@/node_modules/nookies/dist/index";
 import { useRouter } from "@/node_modules/next/navigation";
 import { cookies } from "next/headers";
 
-export type Diet = {
+export type DietData = {
+    _id:string,
     type:string
 }
 type UserAuthentication = {
     'x-access-token' : string
 }
 type DietType = {
-    Diets: Diet[]
-    addDiet: (type:string)=>void;
+    Diets: DietData[]
+    addDiet: (newDiet:DietData)=>void;
 }
 
 
 export const DietContext = createContext({} as DietType);
 
 export const DietContextProvider = ( {children}: {children: React.ReactNode;}) => {
-    const [Diets, setDiets] = useState<Diet[]>([])
+    const [Diets, setDiets] = useState<DietData[]>([])
 
-    const addDiet = (type:string)=>{
-        let newDiet = {
-            type:type
-        }
-        setDiets([...Diets,newDiet]);
+    const addDiet = ({type}:DietData)=>{
+        
         request<UserAuthentication>('http://localhost:5000/diets',{
             method: 'POST',
             headers: {

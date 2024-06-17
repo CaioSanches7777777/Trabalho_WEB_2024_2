@@ -8,6 +8,7 @@ import { useRouter } from "@/node_modules/next/navigation";
 export type SignIdData = {
     username: string;
     password: string;
+    position: string
 }
 
 export type RegisterContextType = {
@@ -27,17 +28,9 @@ export default function RegisterProvider( {children}: {children: React.ReactNode
 
     const router = useRouter();
     
-    async function createUser({username, password}: SignIdData) {
+    async function createUser({username, password, position}: SignIdData) {
 
-        let {'x-access-token': token} = await request<UserAuthentication>('http://localhost:5000/auth',{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({username,password}),
-            referrerPolicy: 'no-referrer',
-            cache: 'no-store'
-        })
+        
 
         /*
         const result = await fetch('http://127.0.0.1:5000/auth',{   //ver se esse é o url correto do backend usado para registrar o usuario
@@ -47,23 +40,18 @@ export default function RegisterProvider( {children}: {children: React.ReactNode
         const token = await result.json();
         */
 
-        if(!token) setAuthError('Usuário ou senha inválidos. verifique e tente novamente!');
-        else{
-            //cria um cookie
-            setCookie(undefined, 'auth.token', token, { 
-                maxAge: 60 * 60 * 1,
-            });
+        
             request<UserAuthentication>('http://localhost:5000/registerUser',{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'x-access-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkM0MTAiLCJpYXQiOjE3MTgzNzI2MjN9.p-cY7-BtKxyJqnU8dv_eebCc9p9wu4JWcMPVfkpT2FI"
                 },
-                body: JSON.stringify({username,password}),
+                body: JSON.stringify({username,password,position}),
                 referrerPolicy: 'no-referrer',
                 cache: 'no-store'
             })
-        }
+        
     }
     return (
         <RegisterContext.Provider value={{createUser, authError}}>

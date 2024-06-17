@@ -9,6 +9,7 @@ export type SignIdData = {
     _id: string;
     username: string;
     password: string;
+    position: string;
 }
 
 export type LocateContextType = {
@@ -28,7 +29,7 @@ export default function LocateProvider( {children}: {children: React.ReactNode})
 
     const router = useRouter();
     
-    async function getUser({username, password}: SignIdData) {
+    async function getUser({username, password, position}: SignIdData) {
 
         let {'x-access-token': token} = await request<UserAuthentication>('http://localhost:5000/auth',{
             method: 'POST',

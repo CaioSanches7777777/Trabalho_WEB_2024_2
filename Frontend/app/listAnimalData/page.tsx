@@ -4,7 +4,7 @@ import ListAnimal from "@/components/ListAnimal";
 import ListDiet from "@/components/ListDiet";
 import ListHabitat from "@/components/ListHabitat";
 import ListSpecie from "@/components/ListSpecie";
-import { Animal, AnimalContextProvider } from "@/context/AnimalContext";
+import { AnimalData, AnimalContextProvider } from "@/context/AnimalContext";
 import { DietContextProvider } from "@/context/DietContext";
 import { HabitatContextProvider } from "@/context/HabitatContext";
 import { SpecieContextProvider } from "@/context/SpecieContext";

@@ -1,13 +1,13 @@
 'use client';
 
 import React, {useContext, useEffect, useState} from 'react';
-import { AnimalContext, Animal } from "@/context/AnimalContext";
+import { AnimalContext, AnimalData } from "@/context/AnimalContext";
 import Select from 'react-dropdown-select';
-import { Specie } from '@/context/SpecieContext';
+import { SpecieData } from '@/context/SpecieContext';
 
 const ListAnimal = ({}) => {
-  const [animalList, setAnimalList] = useState<Animal[]>([]);
-  const [specieList, setSpecieList] = useState<Specie[]>([]);
+  const [animalList, setAnimalList] = useState<AnimalData[]>([]);
+  const [specieList, setSpecieList] = useState<SpecieData[]>([]);
   //const [isLoading, setLoading] = useState(true);
   const [selectedSpecie, setSelectedSpecie] = useState<string>('all');
 
@@ -44,7 +44,7 @@ const ListAnimal = ({}) => {
       <p className="text-center">Filtrar busca de Animal com base em Espécie</p>
       <div id="filters" className="mb-4 flex items-center">
         <button onClick={() => filterAnimals('all')} className="bg-gray-600 text-white py-2 px-4 m-2 rounded-lg hover:bg-gray-800">Todos</button>
-        {specieList.map((specie:Specie) => (
+        {specieList.map((specie:SpecieData) => (
           <button 
             key={specie._id} 
             onClick={() => filterAnimals(specie.name)} 

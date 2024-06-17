@@ -1,25 +1,25 @@
 "use client";
 
-import { AnimalContext, Animal } from "@/context/AnimalContext";
+import { AnimalContext, AnimalData } from "@/context/AnimalContext";
 import { useRouter } from "next/navigation";
 import router from "next/router";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 
 const NewAnimal = async ({}) => {
-    const { register, handleSubmit } = useForm<Animal>();
+    const { register, handleSubmit } = useForm<AnimalData>();
     const { addAnimal } = useContext(AnimalContext);
     
     const router = useRouter();
-    const handleLogin = async (name:string,species:string,age:number) => {
-        await addAnimal(name, species, age);
+    const handleInsert = async (newAnimal:AnimalData) => {
+        await addAnimal(newAnimal);
     }
 
     return (
         <div className="grid place-items-center mt-20 ">
             <button className="mt-3 bg-gray-600 text-white p-2 rounded-lg " type="submit" onClick={() => router.push('/home')}>Retornar</button>
       
-            <form className="flex flex-col" onSubmit={handleSubmit(handleLogin)}>
+            <form className="flex flex-col" onSubmit={handleSubmit(handleInsert)}>
                 <label htmlFor="name">Apelido: </label>
                 <input {...register('name')} type="text" name="name" id="name" placeholder="name"></input>
 
