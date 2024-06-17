@@ -3,11 +3,11 @@
 import React, {useContext, useEffect, useState} from 'react';
 import { SpecieContext, Specie } from "@/context/SpecieContext";
 import Select from 'react-dropdown-select';
-import { Diet } from '@/context/DietContext';
+import { DietData } from '@/context/DietContext';
 
 const ListSpecie = ({}) => {
   const [specieList, setSpecieList] = useState<Specie[]>([]);
-  const [dietList, setDietList] = useState<Diet[]>([]);
+  const [dietList, setDietList] = useState<DietData[]>([]);
   //const [isLoading, setLoading] = useState(true);
   const [selectedDiet, setSelectedDiet] = useState<string>('all');
 
